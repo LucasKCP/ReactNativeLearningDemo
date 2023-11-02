@@ -1,51 +1,75 @@
-import {Button, StyleSheet, Text, TextInput, View} from 'react-native';
+import {Button, FlatList, StyleSheet, Text, TextInput, View} from 'react-native';
 import {useState} from "react";
 
 export default function App() {
     const [enteredGoalText, setGoalText] = useState('');
+    const [courseGoal, setCourseGoal] = useState([]);
+
     function goalInputHandler(inputText) {
-        console.log(inputText);
         setGoalText(inputText)
     }
+
     function addGoalHandler() {
-        console.log(enteredGoalText)
+        setCourseGoal(currentCourseGoal => [...currentCourseGoal,
+            {text: enteredGoalText, key: Math.random().toString()}])
     }
 
-    return (
-        <View style={styles.container}>
-            <View style={styles.inputContainer}>
-                <TextInput placeholder="Ur goal!!"
-                           style={styles.textInput}
-                           onChangeText={goalInputHandler}
-                />
-                <Button title="Add Goal now mdfk!!"
-                        onPress={addGoalHandler}
-                />
-            </View>
-            <View>
-                <Text>Ur Fking goal</Text>
-            </View>
+    return (<View style={styles.container}>
+        <View style={styles.inputContainer}>
+            <TextInput placeholder="Ur goal!!"
+                       style={styles.textInput}
+                       onChangeText={goalInputHandler}
+            />
+            <Button title="Add Goal now mdfk!!"
+                    onPress={addGoalHandler}
+            />
         </View>
-    );
+        <View style={styles.goalsContainer}>
+            <FlatList
+                data={courseGoal}
+                keyExtractor={(item) => {return item.key}}
+                renderItem={item => {
+                    return (<View style={styles.goalItem}>
+                        <Text style={styles.goalText}>{item.item.text}</Text>
+                    </View>)
+                }}>
+            </FlatList>
+        </View>
+    </View>);
 }
 
 const styles = StyleSheet.create({
     container: {
-        padding: 50,
+        flex: 1,
+        paddingTop: 50,
+        paddingHorizontal: 16
     },
     inputContainer: {
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: 24,
+        borderBottomWidth: 1,
+        borderBottomColor: '#cccccc'
     },
     textInput: {
         borderWidth: 1,
-        borderColor: 'black',
-        width: '80%',
+        borderColor: '#cccccc',
+        width: '70%',
         marginRight: 8,
         padding: 8
     },
     goalsContainer: {
-        flex: 3
+        flex: 5
+    },
+    goalItem: {
+        margin: 8,
+        padding: 8,
+        borderRadius: 6,
+        backgroundColor: '#5e0acc',
+    },
+    goalText: {
+        color: '#cccccc'
     }
 });
