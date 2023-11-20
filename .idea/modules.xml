@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/ReactNativeLearningDemo.iml" filepath="$PROJECT_DIR$/.idea/ReactNativeLearningDemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/demoMain.iml" filepath="$PROJECT_DIR$/demoMain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pyOcr/pyOcr.iml" filepath="$PROJECT_DIR$/pyOcr/pyOcr.iml" />
     </modules>
   </component>
 </project>
