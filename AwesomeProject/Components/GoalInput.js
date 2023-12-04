@@ -20,8 +20,8 @@ export function GoalInput(props) {
                        onChangeText={goalInputHandler}
                        value={enteredGoalText}
             />
-            <Button title="Add Goal now mdfk!!"
-                    onPress={props.onAddGoal}
+            <Button title="Add Goal!!"
+                    onPress={addGoalHandler}
             />
         </View>
     );
@@ -45,8 +45,5 @@ const styles = StyleSheet.create({
         width: '70%',
         marginRight: 8,
         padding: 8
-    },
-    goalsContainer: {
-        flex: 5
     }
 });
